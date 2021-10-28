@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Login } from "./Login.js";
+import { SignUp } from "./SignUp.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
   return (
@@ -44,12 +41,4 @@ export default function App() {
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-function SignUp() {
-  return <h2>Sign Up</h2>;
-}
-
-function Login() {
-  return <h2>Login</h2>;
 }
