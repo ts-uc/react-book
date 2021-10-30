@@ -18,10 +18,10 @@ export const Login = () => {
 
   const handleSubmit = (event) => {
     alert(
-      "A name was submitted: \n" +
-        "email:" +
+      "Form was submitted: \n" +
+        "\nemail:" +
         form.email +
-        "password:" +
+        "\npassword:" +
         form.password
     );
     event.preventDefault();
