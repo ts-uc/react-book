@@ -6,6 +6,9 @@ export const SignUp = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
   const handleInputChange = (event) => {
     const target = event.target;
@@ -18,6 +21,23 @@ export const SignUp = () => {
   };
 
   const handleSubmit = (event) => {
+    fetch("https://api-for-missions-and-railways.herokuapp.com/users", {
+      method: "POST",
+      body: JSON.stringify(form),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          console.log(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+          console.log(error);
+        }
+      );
     alert(
       "Form was submitted: \n" +
         "\nname:" +
