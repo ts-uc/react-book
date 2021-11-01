@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 export const SignUp = (props) => {
   const [form, setForm] = useState({
@@ -54,6 +56,8 @@ export const SignUp = (props) => {
 
   return (
     <>
+      <Link to="/login">Login</Link>
+
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>
