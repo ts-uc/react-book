@@ -22,7 +22,7 @@ export const Login = (props) => {
   const handleSubmit = (event) => {
     fetch("https://api-for-missions-and-railways.herokuapp.com/signin", {
       method: "POST",
-      headers: JSON.stringify(form),
+      body: JSON.stringify(form),
     })
       .then((res) => res.json())
       .then(
@@ -30,7 +30,8 @@ export const Login = (props) => {
           setIsLoaded(true);
           setItems(result);
           console.log(result);
-          props.setToken(result.token)
+          props.setToken(result.token);
+          props.setLoggedIn(true);
         },
         (error) => {
           setIsLoaded(true);
@@ -49,27 +50,30 @@ export const Login = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        e-mail:
-        <input
-          name="email"
-          type="text"
-          checked={form.email}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          name="password"
-          type="text"
-          value={form.password}
-          onChange={handleInputChange}
-        />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          e-mail:
+          <input
+            name="email"
+            type="text"
+            checked={form.email}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            name="password"
+            type="text"
+            value={form.password}
+            onChange={handleInputChange}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    </>
   );
 };

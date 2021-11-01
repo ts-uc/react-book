@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Login } from "./Login.js";
 import { SignUp } from "./SignUp.js";
+import { Home } from "./Home.js"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
   const [token, setToken] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <Router>
       <div>
@@ -27,13 +29,13 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/signup">
-            <SignUp setToken={setToken} />
+            <SignUp setToken={setToken} setLoggedIn={setLoggedIn} />
           </Route>
           <Route path="/login">
-            <Login setToken={setToken}/>
+            <Login setToken={setToken} setLoggedIn={setLoggedIn}/>
           </Route>
           <Route path="/">
-            <Home />
+            <Home token={token}/>
           </Route>
         </Switch>
       </div>
@@ -41,6 +43,3 @@ export default function App() {
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
