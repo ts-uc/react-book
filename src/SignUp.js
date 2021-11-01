@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const SignUp = () => {
+export const SignUp = (props) => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,6 +31,7 @@ export const SignUp = () => {
           setIsLoaded(true);
           setItems(result);
           console.log(result);
+          props.setToken(result.token)
         },
         (error) => {
           setIsLoaded(true);

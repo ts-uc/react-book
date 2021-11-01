@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Login = () => {
+export const Login = (props) => {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -30,6 +30,7 @@ export const Login = () => {
           setIsLoaded(true);
           setItems(result);
           console.log(result);
+          props.setToken(result.token)
         },
         (error) => {
           setIsLoaded(true);

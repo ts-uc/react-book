@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Login } from "./Login.js";
 import { SignUp } from "./SignUp.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
+  const [token, setToken] = useState("");
   return (
     <Router>
       <div>
+        {token}
         <nav>
           <ul>
             <li>
@@ -25,10 +27,10 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/signup">
-            <SignUp />
+            <SignUp setToken={setToken} />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login setToken={setToken}/>
           </Route>
           <Route path="/">
             <Home />
