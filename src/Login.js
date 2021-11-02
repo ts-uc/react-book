@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-
 export const Login = (props) => {
   const [form, setForm] = useState({
     email: "",
@@ -33,7 +32,6 @@ export const Login = (props) => {
           setItems(result);
           console.log(result);
           props.setToken(result.token);
-          props.setLoggedIn(true);
         },
         (error) => {
           setIsLoaded(true);

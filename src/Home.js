@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export const Home = (props) => {
   const [error, setError] = useState(null);
@@ -33,6 +34,16 @@ export const Home = (props) => {
       <p>投稿者: {x.reviewer}</p>
     </div>
   ));
+
+  if (props.token === "") {
+    return (
+      <>
+        <h2>Home</h2>
+        <p>You are not logged in.</p>
+        <Link to="/login">Login</Link>
+      </>
+    );
+  }
 
   return (
     <>
