@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export const Login = (props) => {
@@ -32,6 +32,7 @@ export const Login = (props) => {
           setItems(result);
           console.log(result);
           props.setToken(result.token);
+          localStorage.setItem("token", result.token);
         },
         (error) => {
           setIsLoaded(true);
@@ -51,8 +52,6 @@ export const Login = (props) => {
 
   return (
     <>
-      <Link to="/signup">Sign Up</Link>
-
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -76,6 +75,7 @@ export const Login = (props) => {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      <Link to="/signup">Sign Up</Link>
     </>
   );
 };

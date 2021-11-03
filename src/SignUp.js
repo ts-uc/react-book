@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export const SignUp = (props) => {
@@ -33,6 +33,7 @@ export const SignUp = (props) => {
           setItems(result);
           console.log(result);
           props.setToken(result.token);
+          localStorage.setItem("token", result.token);
         },
         (error) => {
           setIsLoaded(true);
@@ -40,22 +41,11 @@ export const SignUp = (props) => {
           console.log(error);
         }
       );
-    alert(
-      "Form was submitted: \n" +
-        "\nname:" +
-        form.name +
-        "\nemail:" +
-        form.email +
-        "\npassword:" +
-        form.password
-    );
     event.preventDefault();
   };
 
   return (
     <>
-      <Link to="/login">Login</Link>
-
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -89,6 +79,7 @@ export const SignUp = (props) => {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      <Link to="/login">Login</Link>
     </>
   );
 };
