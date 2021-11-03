@@ -2,24 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Login } from "./Login.js";
 import { SignUp } from "./SignUp.js";
 import { Home } from "./Home.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
     var rawToken = localStorage.getItem("token");
-    if (rawToken) {
-      setToken(rawToken);
-    }
-    else{
-      setToken("")
-    }
+    setToken(rawToken ? rawToken : "");
   }, []);
 
   return (
-    <Router>
-      <Link to="/">Home</Link>
+    <BrowserRouter>
       <Switch>
         <Route path="/signup">
           <SignUp setToken={setToken} />
@@ -31,6 +25,6 @@ export default function App() {
           <Home token={token} />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
