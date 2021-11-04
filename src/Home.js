@@ -35,6 +35,11 @@ export const Home = (props) => {
       });
   }, [props.token]);
 
+  const logout = () => {
+    localStorage.setItem("token", "");
+    props.setToken("");
+  };
+
   const reviews = items.map((x) => (
     <div>
       <h3>{x.title}</h3>
@@ -58,7 +63,10 @@ export const Home = (props) => {
     <>
       <header>
         <div>{userName}</div>
-        <div><Link to="/profile">Profile Setting</Link></div>
+        <div>
+          <Link to="/profile">Profile Setting</Link>
+        </div>
+        <div><a href="javacript:void(0)" onClick={logout}>Logout</a></div>
       </header>
       <h2>Home</h2>
       {reviews}
