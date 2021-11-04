@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Login } from "./Login.js";
 import { SignUp } from "./SignUp.js";
 import { Home } from "./Home.js";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -12,17 +12,20 @@ export default function App() {
     setToken(rawToken ? rawToken : "");
   }, []);
 
+  const authed = !(token === "");
+
   return (
     <BrowserRouter>
+      {authed ? "+" : "-"}
       <Switch>
         <Route path="/signup">
-          <SignUp setToken={setToken} />
+          {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} />}
         </Route>
         <Route path="/login">
-          <Login setToken={setToken} />
+          {authed ? <Redirect to="/" /> : <Login setToken={setToken} />}
         </Route>
         <Route path="/">
-          <Home token={token} />
+          {authed ? <Home token={token} /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </BrowserRouter>

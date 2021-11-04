@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,9 +8,6 @@ export const SignUp = (props) => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
 
   const handleInputChange = (event) => {
     const target = event.target;
@@ -22,25 +20,16 @@ export const SignUp = (props) => {
   };
 
   const handleSubmit = (event) => {
-    fetch("https://api-for-missions-and-railways.herokuapp.com/signin", {
-      method: "POST",
-      body: JSON.stringify(form),
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-          console.log(result);
-          props.setToken(result.token);
-          localStorage.setItem("token", result.token);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          console.log(error);
-        }
-      );
+    axios
+      .post("https://api-for-missions-and-railways.herokuapp.com/users", form)
+      .then(function (response) {
+        console.log(response);
+        props.setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     event.preventDefault();
   };
 

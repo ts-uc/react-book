@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,23 +8,18 @@ export const Home = (props) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://api-for-missions-and-railways.herokuapp.com/books", {
-      method: "GET",
-      headers: { Authorization: "Bearer " + props.token },
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-          console.log(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          console.log(error);
-        }
-      );
+    axios
+      .get("https://api-for-missions-and-railways.herokuapp.com/books", {
+        headers: { Authorization: "Bearer " + props.token },
+      })
+      .then(function (response) {
+        console.log(response);
+        setItems(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setError(error);
+      });
   }, [props.token]);
 
   const reviews = items.map((x) => (
