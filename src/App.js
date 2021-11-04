@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Login } from "./Login.js";
 import { SignUp } from "./SignUp.js";
 import { Home } from "./Home.js";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Profile } from "./Profile.js";
+import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -16,15 +17,23 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Link to="/">Home</Link>
       {authed ? "+" : "-"}
       <Switch>
-        <Route path="/signup">
+        <Route path="/signup" exact>
           {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} />}
         </Route>
-        <Route path="/login">
+        <Route path="/login" exact>
           {authed ? <Redirect to="/" /> : <Login setToken={setToken} />}
         </Route>
-        <Route path="/">
+        <Route path="/profile" exact>
+          {authed ? (
+            <Profile token={token} setToken={setToken} />
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+        <Route path="/" exact>
           {authed ? <Home token={token} /> : <Redirect to="/login" />}
         </Route>
       </Switch>

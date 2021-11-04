@@ -6,6 +6,7 @@ export const Home = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     axios
@@ -15,6 +16,18 @@ export const Home = (props) => {
       .then(function (response) {
         console.log(response);
         setItems(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setError(error);
+      });
+    axios
+      .get("https://api-for-missions-and-railways.herokuapp.com/users", {
+        headers: { Authorization: "Bearer " + props.token },
+      })
+      .then(function (response) {
+        console.log(response);
+        setUserName(response.data.name);
       })
       .catch(function (error) {
         console.log(error);
@@ -43,6 +56,10 @@ export const Home = (props) => {
 
   return (
     <>
+      <header>
+        <div>{userName}</div>
+        <div><Link to="/profile">Profile Setting</Link></div>
+      </header>
       <h2>Home</h2>
       {reviews}
     </>
