@@ -34,7 +34,7 @@ export default function App() {
           )}
         </Route>
         <Route path="/" exact>
-          {authed ? <Home token={token} /> : <Redirect to="/login" />}
+          {authed ? <Home token={token} setToken={setToken}/> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </BrowserRouter>
