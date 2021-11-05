@@ -66,7 +66,14 @@ export const Home = (props) => {
         <div>
           <Link to="/profile">Profile Setting</Link>
         </div>
-        <div><a href="javacript:void(0)" onClick={logout}>Logout</a></div>
+        <div>
+          <Link to="/new">New Post</Link>
+        </div>
+        <div>
+          <a href="javacript:void(0)" onClick={logout}>
+            Logout
+          </a>
+        </div>
       </header>
       <h2>Home</h2>
       {reviews}

@@ -20,6 +20,7 @@ export const Login = (props) => {
         })
         .catch(function (error) {
           console.log(error);
+          alert("ログイン失敗。")
         });
     },
   });
