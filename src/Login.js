@@ -49,7 +49,7 @@ export const Login = (props) => {
             value={formik.values.password}
           />
         </label>
-        <input type="submit">Submit</input>
+        <input type="submit" value="Submit" />
       </form>
       <Link to="/signup">Sign Up</Link>
     </>

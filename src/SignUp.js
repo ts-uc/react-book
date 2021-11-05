@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useFormik } from "formik";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,7 @@ export const SignUp = (props) => {
             value={formik.values.name}
           />
         </label>
+        <br />
         <label>
           e-mail:
           <input
@@ -57,7 +59,7 @@ export const SignUp = (props) => {
             value={formik.values.password}
           />
         </label>
-        <input type="submit">Submit</input>
+        <input type="submit" value="Submit" />
       </form>
       <Link to="/signup">Sign Up</Link>
     </>
