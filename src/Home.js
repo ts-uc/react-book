@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const Home = (props) => {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [userName, setUserName] = useState("");
 
@@ -19,7 +17,7 @@ export const Home = (props) => {
       })
       .catch(function (error) {
         console.log(error);
-        setError(error);
+        alert("書籍一覧情報の取得に失敗しました。")
       });
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/users", {
@@ -31,7 +29,7 @@ export const Home = (props) => {
       })
       .catch(function (error) {
         console.log(error);
-        setError(error);
+        alert("ユーザー名の取得に失敗しました。")
       });
   }, [props.token]);
 
