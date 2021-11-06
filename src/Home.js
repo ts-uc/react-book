@@ -46,6 +46,7 @@ export const Home = (props) => {
       <p>詳細: {x.detail}</p>
       <p>レビュー: {x.review}</p>
       <p>投稿者: {x.reviewer}</p>
+      <p><Link to={`/detail/${x.id}`}>詳細</Link></p>
     </div>
   ));
 

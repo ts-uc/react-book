@@ -4,6 +4,7 @@ import { SignUp } from "./SignUp.js";
 import { Home } from "./Home.js";
 import { Profile } from "./Profile.js";
 import { New } from "./New.js"
+import { Detail } from "./Detail.js"
 import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 export default function App() {
@@ -36,6 +37,9 @@ export default function App() {
         </Route>
         <Route path="/new" exact>
           {authed ? <New token={token} /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/detail/:id" exact>
+          {authed ? <Detail token={token} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/" exact>
           {authed ? <Home token={token} setToken={setToken}/> : <Redirect to="/login" />}
