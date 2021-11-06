@@ -41,13 +41,9 @@ export const Home = (props) => {
   };
 
   const reviews = items.map((x) => (
-    <div>
-      <h3>{x.title}</h3>
-      <p>詳細: {x.detail}</p>
-      <p>レビュー: {x.review}</p>
-      <p>投稿者: {x.reviewer}</p>
-      <p><Link to={`/detail/${x.id}`}>詳細</Link></p>
-    </div>
+    <li>
+      <Link to={`/detail/${x.id}`}>{x.title}</Link>
+    </li>
   ));
 
   if (props.token === "") {
