@@ -1,10 +1,9 @@
+import * as React from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 
 export const Login = (props) => {
-
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     onSubmit: (values) => {
@@ -20,7 +19,7 @@ export const Login = (props) => {
         })
         .catch(function (error) {
           console.log(error);
-          alert("ログイン失敗。")
+          alert("ログイン失敗。");
         });
     },
   });

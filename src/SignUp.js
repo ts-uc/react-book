@@ -1,6 +1,6 @@
+import * as React from "react";
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const SignUp = (props) => {
