@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export const Detail = (props) => {
   const { id } = useParams();
-  const [data, setData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     axios
@@ -14,7 +13,7 @@ export const Detail = (props) => {
       })
       .then(function (response) {
         console.log(response);
-        setData(response.data);
+        props.setDetail(response.data);
         setIsLoaded(true);
       })
       .catch(function (error) {
@@ -25,14 +24,14 @@ export const Detail = (props) => {
   if (isLoaded) {
     return (
       <>
-        <h2>{data.title}</h2>
+        <h2>{props.detail.title}</h2>
         <p>
-          <a href={`${data.url}`}>{data.url}</a>
+          <a href={`${props.detail.url}`}>{props.detail.url}</a>
         </p>
-        <p>詳細: {data.detail}</p>
-        <p>レビュー: {data.review}</p>
-        <p>投稿者: {data.reviewer}</p>
-        <EditButton id={id} isMine={data.isMine} />
+        <p>詳細: {props.detail.detail}</p>
+        <p>レビュー: {props.detail.review}</p>
+        <p>投稿者: {props.detail.reviewer}</p>
+        <EditButton id={id} isMine={props.detail.isMine} />
       </>
     );
   }
