@@ -7,10 +7,10 @@ export const Edit = (props) => {
   const { id } = useParams();
   const formik = useFormik({
     initialValues: {
-      title: "string",
-      url: "string",
-      detail: "string",
-      review: "string",
+      title: props.detail.title,
+      url: props.detail.url,
+      detail: props.detail.detail,
+      review: props.detail.review,
     },
     onSubmit: (values) => {
       axios
@@ -46,7 +46,7 @@ export const Edit = (props) => {
       });
       event.preventDefault();
   };
-  
+
   return (
     <>
       <div>
@@ -95,12 +95,12 @@ export const Edit = (props) => {
             />
           </label>
           <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="更新" />
         </form>
       </div>
       <div>
         <form onSubmit={DeletePage}>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="ページを削除" />
         </form>
       </div>
     </>

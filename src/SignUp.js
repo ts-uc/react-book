@@ -26,7 +26,7 @@ export const SignUp = (props) => {
 
   return (
     <>
-      <h2>Login</h2>
+      <h2>Sign Up</h2>
       <form onSubmit={formik.handleSubmit}>
         <label>
           Name:
@@ -62,7 +62,7 @@ export const SignUp = (props) => {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <Link to="/signup">Sign Up</Link>
+      <Link to="/login">Login</Link>
     </>
   );
 };
