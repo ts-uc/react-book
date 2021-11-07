@@ -30,7 +30,7 @@ export const Edit = (props) => {
     },
   });
 
-  const DeletePage = (id) => {
+  const DeletePage = (event) => {
     axios
       .delete(
         "https://api-for-missions-and-railways.herokuapp.com/books/" + id,
@@ -44,7 +44,9 @@ export const Edit = (props) => {
         console.log(error);
         alert("削除失敗");
       });
+      event.preventDefault();
   };
+  
   return (
     <>
       <div>
@@ -97,9 +99,9 @@ export const Edit = (props) => {
         </form>
       </div>
       <div>
-        <a href="javacript:void(0)" onClick={DeletePage(id)}>
-          ページを削除する
-        </a>
+        <form onSubmit={DeletePage}>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </>
   );
