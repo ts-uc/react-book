@@ -5,6 +5,7 @@ import { Home } from "./Home.js";
 import { Profile } from "./Profile.js";
 import { New } from "./New.js";
 import { Detail } from "./Detail.js";
+import { Edit } from "./Edit.js"
 import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 export default function App() {
@@ -42,6 +43,9 @@ export default function App() {
         </Route>
         <Route path="/detail/:id" exact>
           {authed ? <Detail token={token} setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/edit/:id" exact>
+          {authed ? <Edit token={token} setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/" exact>
           {authed ? (
