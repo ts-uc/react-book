@@ -2,6 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+import { setName, token } from "./User";
 
 export const SignUp = (props) => {
   const formik = useFormik({
@@ -14,12 +15,13 @@ export const SignUp = (props) => {
         )
         .then(function (response) {
           console.log(response);
-          props.setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
+          setName(response.data.token);
+          props.setToken(response.data.token);
         })
         .catch(function (error) {
           console.log(error);
-          alert("アカウント作成失敗。")
+          alert("アカウント作成失敗。");
         });
     },
   });

@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 
-export const getToken = () => {
+export const token = () => {
   var rawToken = localStorage.getItem("token");
   return rawToken ? rawToken : "";
 };
@@ -11,49 +11,21 @@ export const isLoggedin = () => {
   return !!rawToken;
 };
 
-export const postLogIn = (arg) => {
-  var token = "";
-  axios
-    .post("https://api-for-missions-and-railways.herokuapp.com/signin", arg)
-    .then(function (response) {
-      console.log(response);
-      localStorage.setItem("token", response.data.token);
-      token = response.data.token;
-      setName();
-    })
-    .catch(function (error) {
-      console.log(error);
-      alert("ログイン失敗。");
-    });
-  return token;
-};
-
-export const postSignUp = (arg) => {
-  var token = "";
-  axios
-    .post("https://api-for-missions-and-railways.herokuapp.com/users", arg)
-    .then(function (response) {
-      console.log(response);
-      localStorage.setItem("token", response.data.token);
-      token = response.data.token;
-      setName();
-    })
-    .catch(function (error) {
-      console.log(error);
-      alert("アカウント作成失敗。");
-    });
-  return token;
+export const name = () => {
+  var rawName = localStorage.getItem("name");
+  return rawName ? rawName : "";
 };
 
 export const setLogout = () => {
   localStorage.setItem("token", "");
 };
 
-export const setName = () => {
-  var name = "";
+export const setName = (token) => {
+  var name = ""
+
   axios
     .get("https://api-for-missions-and-railways.herokuapp.com/users", {
-      headers: { Authorization: "Bearer " + getToken() },
+      headers: { Authorization: "Bearer " + token },
     })
     .then(function (response) {
       console.log(response);
@@ -64,10 +36,5 @@ export const setName = () => {
       console.log(error);
       alert("ユーザー名の取得に失敗しました。");
     });
-  return name;
-};
-
-export const getName = () => {
-  var rawName = localStorage.getItem("name");
-  return rawName ? rawName : "";
+    return name;
 };

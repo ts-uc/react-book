@@ -2,6 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import { setName, token } from "./User.js";
 
 export const Login = (props) => {
   const formik = useFormik({
@@ -14,8 +15,11 @@ export const Login = (props) => {
         )
         .then(function (response) {
           console.log(response);
-          props.setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
+          setName(response.data.token);
+          console.log("ああああ")
+          props.setToken(response.data.token);
+
         })
         .catch(function (error) {
           console.log(error);
