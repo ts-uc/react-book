@@ -16,6 +16,8 @@ export default function App() {
   useEffect(() => {
     var rawToken = localStorage.getItem("token");
     setToken(rawToken ? rawToken : "");
+    var rawUserName = localStorage.getItem("userName");
+    setUserName(rawUserName ? rawUserName : "");
   }, []);
 
   const authed = !(token === "");
@@ -26,10 +28,10 @@ export default function App() {
       {authed ? "+" : "-"}
       <Switch>
         <Route path="/signup">
-          {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} />}
+          {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} setUserName={setUserName} />}
         </Route>
         <Route path="/login">
-          {authed ? <Redirect to="/" /> : <Login setToken={setToken} />}
+          {authed ? <Redirect to="/" /> : <Login setToken={setToken} setUserName={setUserName} />}
         </Route>
         <Route path="/profile">
           {authed ? (
