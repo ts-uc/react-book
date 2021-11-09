@@ -35,23 +35,23 @@ export default function App() {
         </Route>
         <Route path="/profile">
           {authed ? (
-            <Profile token={token} setToken={setToken} />
+            <Profile />
           ) : (
             <Redirect to="/login" />
           )}
         </Route>
         <Route path="/new" exact>
-          {authed ? <New token={token} /> : <Redirect to="/login" />}
+          {authed ? <New /> : <Redirect to="/login" />}
         </Route>
         <Route path="/detail/:id" exact>
-          {authed ? <Detail token={token} setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
+          {authed ? <Detail setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/edit/:id" exact>
-          {authed ? <Edit token={token} setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
+          {authed ? <Edit setDetail={setDetail} detail={detail} /> : <Redirect to="/login" />}
         </Route>
         <Route path="/" exact>
           {authed ? (
-            <Home token={token} setToken={setToken} />
+            <Home setToken={setToken} />
           ) : (
             <Redirect to="/login" />
           )}

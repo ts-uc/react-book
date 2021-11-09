@@ -17,7 +17,7 @@ export const Edit = (props) => {
         .put(
           "https://api-for-missions-and-railways.herokuapp.com/books/" + id,
           values,
-          { headers: { Authorization: "Bearer " + props.token } }
+          { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
         )
         .then(function (res) {
           console.log(res);
@@ -34,7 +34,7 @@ export const Edit = (props) => {
     axios
       .delete(
         "https://api-for-missions-and-railways.herokuapp.com/books/" + id,
-        { headers: { Authorization: "Bearer " + props.token } }
+        { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
       )
       .then(function (res) {
         console.log(res);

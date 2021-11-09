@@ -9,7 +9,7 @@ export const Home = (props) => {
   useEffect(() => {
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/books", {
-        headers: { Authorization: "Bearer " + props.token },
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(function (response) {
         console.log(response);
@@ -17,11 +17,11 @@ export const Home = (props) => {
       })
       .catch(function (error) {
         console.log(error);
-        alert("書籍一覧情報の取得に失敗しました。")
+        alert("書籍一覧情報の取得に失敗しました。");
       });
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/users", {
-        headers: { Authorization: "Bearer " + props.token },
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(function (response) {
         console.log(response);
@@ -29,9 +29,9 @@ export const Home = (props) => {
       })
       .catch(function (error) {
         console.log(error);
-        alert("ユーザー名の取得に失敗しました。")
+        alert("ユーザー名の取得に失敗しました。");
       });
-  }, [props.token]);
+  }, []);
 
   const logout = () => {
     localStorage.setItem("token", "");
@@ -44,7 +44,9 @@ export const Home = (props) => {
     </li>
   ));
 
-  if (props.token === "") {
+  /*
+
+  if (localStorage.getItem("token") === "") {
     return (
       <>
         <h2>Home</h2>
@@ -53,6 +55,7 @@ export const Home = (props) => {
       </>
     );
   }
+ */
 
   return (
     <>

@@ -9,7 +9,7 @@ export const Profile = (props) => {
   useEffect(() => {
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/users", {
-        headers: { Authorization: "Bearer " + props.token },
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(function (response) {
         console.log(response);
@@ -19,7 +19,7 @@ export const Profile = (props) => {
         console.log(error);
         setError(error);
       });
-  }, [props.token]);
+  }, []);
 
   const handleChange = (event) => {
     setForm(event.target.value);
@@ -31,11 +31,12 @@ export const Profile = (props) => {
         "https://api-for-missions-and-railways.herokuapp.com/users",
         { name: form },
         {
-          headers: { Authorization: "Bearer " + props.token },
+          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
         }
       )
       .then(function (response) {
         console.log(response);
+        localStorage.setItem("name", form);
         alert("Change was submitted!");
       })
       .catch(function (error) {

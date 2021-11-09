@@ -9,7 +9,7 @@ export const Detail = (props) => {
   useEffect(() => {
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/books/" + id, {
-        headers: { Authorization: "Bearer " + props.token },
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       })
       .then(function (response) {
         console.log(response);

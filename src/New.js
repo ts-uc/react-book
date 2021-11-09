@@ -10,7 +10,7 @@ export const New = (props) => {
         .post(
           "https://api-for-missions-and-railways.herokuapp.com/books",
           values,
-          { headers: { Authorization: "Bearer " + props.token } }
+          { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
         )
         .then(function (response) {
           console.log(response);
