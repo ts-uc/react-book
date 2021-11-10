@@ -20,6 +20,7 @@ export const Detail = (props) => {
         console.log(error);
         alert("読み込みエラー");
       });
+      // eslint-disable-next-line
   }, []);
   if (isLoaded) {
     return (
