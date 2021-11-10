@@ -17,7 +17,6 @@ export const Login = (props) => {
           console.log(response);
           localStorage.setItem("token", response.data.token);
           setName(response.data.token);
-          console.log("ああああ")
           props.setToken(response.data.token);
 
         })
