@@ -10,14 +10,11 @@ import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 export default function App() {
   const [token, setToken] = useState("");
-  const [userName, setUserName] = useState("");
   const [detail, setDetail] = useState({});
 
   useEffect(() => {
     var rawToken = localStorage.getItem("token");
     setToken(rawToken ? rawToken : "");
-    var rawUserName = localStorage.getItem("userName");
-    setUserName(rawUserName ? rawUserName : "");
   }, []);
 
   const authed = !(token === "");
@@ -28,10 +25,10 @@ export default function App() {
       {authed ? "+" : "-"}
       <Switch>
         <Route path="/signup">
-          {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} setUserName={setUserName} />}
+          {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} />}
         </Route>
         <Route path="/login">
-          {authed ? <Redirect to="/" /> : <Login setToken={setToken} setUserName={setUserName} />}
+          {authed ? <Redirect to="/" /> : <Login setToken={setToken} />}
         </Route>
         <Route path="/profile">
           {authed ? (

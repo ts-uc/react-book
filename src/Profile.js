@@ -1,25 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useFormik } from "formik";
+import React, { useState } from "react";
 
 export const Profile = (props) => {
-  const [error, setError] = useState("");
-  const [form, setForm] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("https://api-for-missions-and-railways.herokuapp.com/users", {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-      })
-      .then(function (response) {
-        console.log(response);
-        setForm(response.data.name);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setError(error);
-      });
-  }, []);
+  const [form, setForm] = useState(localStorage.getItem("name"));
 
   const handleChange = (event) => {
     setForm(event.target.value);
@@ -37,11 +20,11 @@ export const Profile = (props) => {
       .then(function (response) {
         console.log(response);
         localStorage.setItem("name", form);
-        alert("Change was submitted!");
+        alert("名前を変更しました!");
       })
       .catch(function (error) {
         console.log(error);
-        setError(error);
+        alert("名前の変更に失敗しました。")
       });
     event.preventDefault();
   };
