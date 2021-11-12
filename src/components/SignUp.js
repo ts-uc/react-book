@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
-import { setName } from "./User";
+import { setName } from "../User.js";
 
 export const SignUp = (props) => {
   const formik = useFormik({

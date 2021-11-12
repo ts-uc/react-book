@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Login } from "./Login.js";
-import { SignUp } from "./SignUp.js";
-import { Home } from "./Home.js";
-import { Profile } from "./Profile.js";
-import { New } from "./New.js";
-import { Detail } from "./Detail.js";
-import { Edit } from "./Edit.js"
+import { Login } from "./components/Login.js";
+import { SignUp } from "./components/SignUp.js";
+import { Home } from "./components/Home.js";
+import { Profile } from "./components/Profile.js";
+import { New } from "./components/New.js";
+import { Detail } from "./components/Detail.js";
+import { Edit } from "./components/Edit.js"
 import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 export default function App() {
