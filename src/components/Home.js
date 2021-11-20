@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { TokenContext } from "../App";
 
 export const Home = (props) => {
   const [items, setItems] = useState([]);
   const [userName, setUserName] = useState("");
 
+  const { token, setToken } = useContext(TokenContext);
+
   useEffect(() => {
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/books", {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        headers: { Authorization: "Bearer " + token },
       })
       .then(function (response) {
         console.log(response);
@@ -21,7 +24,7 @@ export const Home = (props) => {
       });
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/users", {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        headers: { Authorization: "Bearer " + token },
       })
       .then(function (response) {
         console.log(response);
@@ -35,7 +38,7 @@ export const Home = (props) => {
 
   const logout = () => {
     localStorage.setItem("token", "");
-    props.setToken("");
+    setToken("");
   };
 
   const reviews = items.map((x) => (

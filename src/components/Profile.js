@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TokenContext } from "../App";
 
 export const Profile = (props) => {
+  const { token } = useContext(TokenContext);
+
   const [form, setForm] = useState(localStorage.getItem("name"));
 
   const handleChange = (event) => {
@@ -14,7 +17,7 @@ export const Profile = (props) => {
         "https://api-for-missions-and-railways.herokuapp.com/users",
         { name: form },
         {
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+          headers: { Authorization: "Bearer " + token },
         }
       )
       .then(function (response) {
@@ -24,7 +27,7 @@ export const Profile = (props) => {
       })
       .catch(function (error) {
         console.log(error);
-        alert("名前の変更に失敗しました。")
+        alert("名前の変更に失敗しました。");
       });
     event.preventDefault();
   };

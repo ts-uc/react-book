@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { TokenContext } from "../App";
 
 export const Detail = (props) => {
+  const { token } = useContext(TokenContext);
+
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     axios
       .get("https://api-for-missions-and-railways.herokuapp.com/books/" + id, {
-        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        headers: { Authorization: "Bearer " + token },
       })
       .then(function (response) {
         console.log(response);

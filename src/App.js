@@ -30,7 +30,7 @@ export default function App() {
         {authed ? "+" : "-"}
         <Switch>
           <Route path="/signup">
-            {authed ? <Redirect to="/" /> : <SignUp setToken={setToken} />}
+            {authed ? <Redirect to="/" /> : <SignUp />}
           </Route>
           <Route path="/login">
             {authed ? <Redirect to="/" /> : <Login />}

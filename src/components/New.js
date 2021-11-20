@@ -1,8 +1,11 @@
-import * as React from "react";
+import React, {useContext} from "react";
 import axios from "axios";
 import { useFormik } from "formik";
+import { TokenContext } from "../App";
 
-export const New = (props) => {
+export const New = () => {
+  const { token } = useContext(TokenContext);
+
   const formik = useFormik({
     initialValues: { title: "", url: "", detail: "", review: "" },
     onSubmit: (values) => {
@@ -10,7 +13,7 @@ export const New = (props) => {
         .post(
           "https://api-for-missions-and-railways.herokuapp.com/books",
           values,
-          { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
+          { headers: { Authorization: "Bearer " + token } }
         )
         .then(function (response) {
           console.log(response);

@@ -6,7 +6,7 @@ import { setName } from "../api/User.js";
 import { TokenContext } from "../App.js";
 
 export const Login = () => {
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useContext(TokenContext);
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     onSubmit: (values) => {

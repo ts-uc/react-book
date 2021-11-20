@@ -1,9 +1,12 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import { useParams } from "react-router";
+import { TokenContext } from "../App";
 
 export const Edit = (props) => {
+  const { token } = useContext(TokenContext);
+
   const { id } = useParams();
   const formik = useFormik({
     initialValues: {
@@ -17,7 +20,11 @@ export const Edit = (props) => {
         .put(
           "https://api-for-missions-and-railways.herokuapp.com/books/" + id,
           values,
-          { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then(function (res) {
           console.log(res);
@@ -34,7 +41,9 @@ export const Edit = (props) => {
     axios
       .delete(
         "https://api-for-missions-and-railways.herokuapp.com/books/" + id,
-        { headers: { Authorization: "Bearer " + localStorage.getItem("token") } }
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
       )
       .then(function (res) {
         console.log(res);
@@ -44,7 +53,7 @@ export const Edit = (props) => {
         console.log(error);
         alert("削除失敗");
       });
-      event.preventDefault();
+    event.preventDefault();
   };
 
   return (
