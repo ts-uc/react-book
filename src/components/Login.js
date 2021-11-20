@@ -1,10 +1,12 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { setName } from "../api/User.js";
+import { TokenContext } from "../App.js";
 
-export const Login = (props) => {
+export const Login = () => {
+  const { token, setToken } = useContext(TokenContext);
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     onSubmit: (values) => {
@@ -17,8 +19,7 @@ export const Login = (props) => {
           console.log(response);
           localStorage.setItem("token", response.data.token);
           setName(response.data.token);
-          props.setToken(response.data.token);
-
+          setToken(response.data.token);
         })
         .catch(function (error) {
           console.log(error);
